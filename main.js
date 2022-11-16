@@ -59,11 +59,17 @@ const saveLocalStorage = (pizza) => {
 // Busca la card en el localStorage y llama a la showCard.
 const renderCard = () => {
     const pizza = JSON.parse(localStorage.getItem('pizza'));
-    showCard(pizza);
+
+    if (pizza === null){
+        return;
+    } else {
+        showCard(pizza)
+    };
 };
 
 // Mete la card al contenedor.
 const showCard = (pizza) => {
+    console.log(pizza);
     CONTAINER.innerHTML =
         `<div class="card">
             <div class="img_name_price">
@@ -87,7 +93,7 @@ const showCard = (pizza) => {
 const searchId = (array) => {
     const inputValue = INPUT.value;
     const value = array.some(e => e.id === parseInt(inputValue));
-
+    console.log(inputValue);
     if(value){
         const pizza = array.find(e => e.id === parseInt(inputValue));
         showCard(pizza);
